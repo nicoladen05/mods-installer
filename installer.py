@@ -3,7 +3,7 @@ import subprocess
 import os
 
 def install_updater():
-    url = "https://raw.githubusercontent.com/user/repo/master/minecraft_mod_updater.exe"
+    url = "https://github.com/nicoladen05/mods-installer/raw/master/auto-update.exe"
     filename = "minecraft_mod_updater.exe"
 
     # Download the script
@@ -97,4 +97,4 @@ confirm = input()
 
 # If the user confirms, delete the mods folder
 if confirm.lower() == "j":
-    install_updater
+    install_updater()
