@@ -87,3 +87,14 @@ if not os.path.exists(mods_folder):
 
 repo_url = "https://github.com/nicoladen05/minecraft-mods"
 subprocess.run(["git", "clone", repo_url, mods_folder])
+
+# Print a warning message
+print("Sollen die Mods automatisch geupdatet werden?")
+print("Schreibe j oder n und drücke auf enter.")
+
+# Get the user's input
+confirm = input()
+
+# If the user confirms, delete the mods folder
+if confirm.lower() == "j":
+    install_updater
