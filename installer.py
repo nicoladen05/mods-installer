@@ -1,22 +1,8 @@
 import requests
 import subprocess
 import os
-
-def install_updater():
-    url = "https://github.com/nicoladen05/mods-installer/raw/master/auto-update.exe"
-    filename = "minecraft_mod_updater.exe"
-
-    # Download the script
-    urllib.request.urlretrieve(url, filename)
-
-    # Add the script to the startup folder
-    startup_path = os.path.join(os.environ["APPDATA"], "Microsoft", "Windows", "Start Menu", "Programs", "Startup")
-    os.makedirs(startup_path, exist_ok=True)
-    link_path = os.path.join(startup_path, f"{filename}.lnk")
-    shell = ctypes.windll.shell32
-    shell.IsUserAnAdmin()
-    shortcut = shell.SHCreateShortcut(link_path, filename)
-    shortcut.Save()
+import urllib.request
+import ctypes
 
 def is_git_installed():
     try:
@@ -87,14 +73,3 @@ if not os.path.exists(mods_folder):
 
 repo_url = "https://github.com/nicoladen05/minecraft-mods"
 subprocess.run(["git", "clone", repo_url, mods_folder])
-
-# Print a warning message
-print("Sollen die Mods automatisch geupdatet werden?")
-print("Schreibe j oder n und drücke auf enter.")
-
-# Get the user's input
-confirm = input()
-
-# If the user confirms, delete the mods folder
-if confirm.lower() == "j":
-    install_updater()
